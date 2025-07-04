@@ -1,0 +1,62 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+static unsigned long next = 1;
+
+/* RAND_MAX assumed to be 32767 */
+int rand_custom(void) {
+    next = next * 1103515245 + 12345; // x(n+1) = a*x(n) + m
+    return (unsigned)(next / 65536) % 32768;
+}
+
+void srand_custom(unsigned seed) {
+    next = seed;
+}
+
+int main() {
+    int N = 10000; // Liczba generowanych liczb
+    int numbers[N];
+    int histogram[20] = {0};
+    int i;
+    int seed = 123; // Początkowe ziarno
+    int period = 0;
+    int first_number;
+    int repeat_found = 0;
+
+    srand_custom(seed);
+
+    // Generowanie liczb
+    for (i = 0; i < N; i++) {
+        numbers[i] = rand_custom();
+        histogram[numbers[i] % 20]++;
+        if (i == 0) {
+            first_number = numbers[i];
+        }
+        else if (numbers[i] == first_number && !repeat_found) {
+            period = i;
+            repeat_found = 1;
+        }
+    }
+
+    // Wyświetlenie wygenerowanych liczb
+    printf("Wygenerowane liczby: \n");
+    for (i = 0; i < 100; i++) { // Tylko pierwsze 100 liczb dla czytelności
+        printf("%d ", numbers[i]);
+    }
+    printf("\n\n");
+
+    // Wyświetlenie histogramu
+    printf("Histogram:\n");
+    for (i = 0; i < 20; i++) {
+        printf("Przedział %d: %d\n", i, histogram[i]);
+    }
+
+    // Okres generatora
+    if (repeat_found) {
+        printf("\nOkres generatora: %d\n", period);
+    } else {
+        printf("\nOkres nie został znaleziony w pierwszych %d iteracjach.\n", N);
+    }
+
+    return 0;
+}
