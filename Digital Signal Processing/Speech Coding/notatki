@@ -1,0 +1,41 @@
+zad 1_2
+dla Np = 2
+mowa jest slyszalna jakby przez nos
+dla Np = 4
+slyszalna poprawa w jakosci dzwieku. Nadal przez nos ale slabiej
+dla Np = 6
+duzo lepsza jakosc dzwieku, mowa bardziej wyrazna i glosniejsza
+dla Np = 8
+rowniez lepsza jakosc dzwieku
+dla Np = 10
+minimalnie, ale lepsza jakosc niz dla Np = 8
+
+zad 1_4 
+Kwantyzacja to proces zamiany wartości ciągłej (np. amplitudy sygnału, wartości współczynnika, kąta fazowego) na wartość dyskretną z ograniczonego zbioru możliwych wartości. W kontekście kodowania mowy:
+
+Cel: zmniejszyć ilość danych do przesłania/zapisania (kompresja),
+
+Koszt: pewna utrata dokładności (a więc jakości), bo wartości są zaokrąglane do najbliższej z dozwolonych.
+
+W przypadku współczynników filtru predykcji LPC, kwantyzacja:
+
+dotyczy biegunów transmitancji H(z) (czyli pierwiastków mianownika),
+
+w praktyce: kwantyzujemy moduł (długość) i kąt (fazę) każdego bieguna.
+
+
+zad 2 
+pobudzenie zawsze dla bezdzwiecznej
+mowa - szept z chrypą
+
+zachował decyzję V/UV ale w przypadku głoski dźwięcznej obniżył dwukrotnie częstotliwość
+tonu podstawowego
+mowa przez nos, glos wysoki
+
+zachował decyzję V/UV ale w przypadku głoski dźwięcznej ignorował informację o
+częstotliwości tonu podstawowego, ustaw go na stałą wartość (np. T=80),
+robotyczna mowa spowodowana stalym tonem podstawowym
+
+ignorował decyzję V/UV, ustaw pobudzenie na bezdźwięczne lecz zamiast szumu użyj próbek
+z pliku coldvox.wav.
+mowa jak po autotune, do tego delikatnie stlumnina
